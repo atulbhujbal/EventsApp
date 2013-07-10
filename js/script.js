@@ -45,13 +45,15 @@ var newfunction = function(id){
 	
 }*/
 $( document ).on( "pageinit", "#page1", function() {
-
-	$.mobile.changePage( "#page2", { transition: "fade" });
+alert("Loading Page");
+	//$.mobile.changePage( "#page2", { transition: "fade" });
 	
 });
 
 $( document ).on( "pageinit", "#page2", function() {
-
+	
+	alert("loading events");
+	
 	var tmpl, 	// Main template HTML
 	tdata = {}	// JSON data object that feeds the template
  
