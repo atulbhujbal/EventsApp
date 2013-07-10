@@ -62,7 +62,7 @@ $( document ).on( "pageinit", "#page2", function() {
 	)											
 
 	// Retrieve the server data and then initialise the page	
-	$.getJSON("http://api.eventfinder.com.au/v2/events.json?callback=?", {
+	$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {
                 rows : 20,
 				fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"
 			 },
@@ -83,7 +83,7 @@ $( document ).on( "pageinit", "#page2", function() {
 
 			var etmpl, 	// Main template HTML
 			edata = {}	// JSON data object that feeds the template
-		 
+		 // http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.xml
 			// Load the HTML template
 			$.get('tmpl/eventTmpl.html',function(tmpl2){
 					etmpl = tmpl2;
@@ -91,7 +91,7 @@ $( document ).on( "pageinit", "#page2", function() {
 			)											
 
 			// Retrieve the server data and then initialise the page	
-			$.getJSON("http://api.eventfinder.com.au/v2/events.json?callback=?", {id : eid},
+			$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {id : eid},
 				function(data){
 					console.log(data);
 					$.extend(edata,data);
