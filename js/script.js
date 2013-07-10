@@ -52,13 +52,13 @@ alert("Loading Page");
 
 $( document ).on( "pageinit", "#page2", function() {
 	
-	alert("loading events");
+	alert("loading tmpl");
 	
 	var tmpl, 	// Main template HTML
 	tdata = {}	// JSON data object that feeds the template
  
 	// Load the HTML template
-	$.get('tmpl/eventsTmpl.html',function(tmplt){
+	$.get('eventsTmpl.html',function(tmplt){
 			tmpl = tmplt;
 		}
 	)											
@@ -90,7 +90,7 @@ $( document ).on( "pageinit", "#page2", function() {
 			edata = {}	// JSON data object that feeds the template
 		 // http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.xml
 			// Load the HTML template
-			$.get('tmpl/eventTmpl.html',function(tmpl2){
+			$.get('eventTmpl.html',function(tmpl2){
 					etmpl = tmpl2;
 				}
 			)											
