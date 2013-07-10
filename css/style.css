@@ -1,0 +1,38 @@
+ul{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style-type: none;
+	padding: 14px 0 20px 0;
+	border-bottom: 1px solid #808080;
+	font-family: arial;
+	font-size: 12px;
+	
+}
+.event_img{
+	width:40px;
+	height:40px;
+	margin-right:10px;
+}
+.event-name{
+	font-weight:bold;
+}
+
+.address{
+	font-size: 12px;
+}
+
+
+.splashscr{
+		background: #FFDF78;
+		
+	}
+
+h1.splash {
+	font: bold 26pt Arial;
+	color: gray;
+	text-shadow: 0 1px 0 #CCC, 0 2px 0 #C9C9C9, 0 3px 0 #BBB, 0 4px 0 #B9B9B9, 0 5px 0 #AAA, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+	text-transform: uppercase;
+	text-align: center;
+}
