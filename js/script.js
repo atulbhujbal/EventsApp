@@ -63,12 +63,15 @@ $( document ).on( "pageinit", "#page2", function() {
 		}
 	)											
 
+	alert("tmpl loaded");
+
 	// Retrieve the server data and then initialise the page	
 	$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {
                 rows : 20,
 				fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"
 			 },
 		function(data){
+			alert("events loaded"+data);
 			console.log(data);
 			$.extend(tdata,data);
 			//tdata=data;
