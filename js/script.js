@@ -45,14 +45,14 @@ var newfunction = function(id){
 	
 }*/
 $( document ).on( "pageinit", "#page1", function() {
-alert("Loading Page");
+//alert("Loading Page");
 	//$.mobile.changePage( "#page2", { transition: "fade" });
 	
 });
 
 $( document ).on( "pageinit", "#page2", function() {
 	
-	alert("loading tmpl");
+	//alert("loading tmpl");
 	
 	var tmpl, 	// Main template HTML
 	tdata = {}	// JSON data object that feeds the template
@@ -63,10 +63,36 @@ $( document ).on( "pageinit", "#page2", function() {
 		}
 	)											
 
-	alert("tmpl loaded");
+	//alert("tmpl loaded");
 
+	var request = $.ajax({
+	
+				  url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
+				  type: "GET",
+				  async: true,
+				  //headers: {'X-Parse-Application-Id':'eventsaroundyou','X-Parse-REST-API-Key':'dksvrtzfqmrd'},
+				  data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
+				  dataType: "json",
+	});
+	
+	request.done(function(data){
+			
+				//console.log(data);
+	    		$.extend(tdata,data);
+				var renderedPage = Mustache.to_html( tmpl, tdata );
+				$("#eventlist").html( renderedPage );
+	});
+
+
+	request.fail(function(jqXHR, textStatus) {
+	
+		  	alert( "Request failed: " + textStatus );
+
+	});
+
+	
 	// Retrieve the server data and then initialise the page	
-	$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {
+	/*$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {
                 rows : 20,
 				fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"
 			 },
@@ -79,7 +105,7 @@ $( document ).on( "pageinit", "#page2", function() {
 			$("#eventlist").html( renderedPage );
 			
 		}
-	)
+	)*/
 	
 	$(document).on('click', '.eventlink', function(){
 
