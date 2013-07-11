@@ -66,7 +66,7 @@ $( document ).on( "pageinit", "#page2", function() {
 	alert("sending request");
 	var request = $.ajax({
 	
-				  url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
+				  url: "http://api.eventfinder.com.au/v2/events.json?callback=?",
 				  type: "GET",
 				  async: true,
 				  cache: false,				  
