@@ -63,19 +63,18 @@ $( document ).on( "pageinit", "#page2", function() {
 		}
 	)											
 
-	
+	alert("sending request");
 	var request = $.ajax({
 	
 				  url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
 				  type: "GET",
 				  async: true,
-				  cache: false,
-				  //headers: {'X-Parse-Application-Id':'eventsaroundyou','X-Parse-REST-API-Key':'dksvrtzfqmrd'},
+				  cache: false,				  
 				  data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
 				  dataType: "json",
 		
 		success: function(data){
-					alert("data fetched");
+
 					console.log(data);
 					tdata=data;
 		    
@@ -96,14 +95,14 @@ $( document ).on( "pageinit", "#page2", function() {
 				var renderedPage = Mustache.to_html( tmpl, tdata );
 				$("#eventlist").html( renderedPage );
 	});
-	
+	*/
 
 	request.fail(function(jqXHR, textStatus) {
 	
 		  	alert( "Request failed: " + textStatus );
 
 	});
-*/
+
 	
 	// Retrieve the server data and then initialise the page	
 	/*$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {
