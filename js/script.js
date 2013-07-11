@@ -76,9 +76,11 @@ $( document ).on( "pageinit", "#page2", function() {
 	
 
 	request.done(function(data){
-			alert("tmpl loaded"+data);
+			
 				//console.log(data);
 	    		$.extend(tdata,data);
+	    		tdata=data;
+	    		alert("data fetched");
 				var renderedPage = Mustache.to_html( tmpl, tdata );
 				$("#eventlist").html( renderedPage );
 	});
