@@ -63,8 +63,7 @@ $( document ).on( "pageinit", "#page2", function() {
 		}
 	)											
 
-	//alert("tmpl loaded");
-
+	
 	var request = $.ajax({
 	
 				  url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
@@ -74,7 +73,8 @@ $( document ).on( "pageinit", "#page2", function() {
 				  data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
 				  dataType: "json"
 	});
-	
+	alert("tmpl loaded");
+
 	request.done(function(data){
 			
 				//console.log(data);
