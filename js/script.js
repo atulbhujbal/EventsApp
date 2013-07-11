@@ -72,7 +72,7 @@ $( document ).on( "pageinit", "#page2", function() {
 				  async: true,
 				  //headers: {'X-Parse-Application-Id':'eventsaroundyou','X-Parse-REST-API-Key':'dksvrtzfqmrd'},
 				  data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
-				  dataType: "json",
+				  dataType: "json"
 	});
 	
 	request.done(function(data){
@@ -114,14 +114,14 @@ $( document ).on( "pageinit", "#page2", function() {
 
 			var etmpl, 	// Main template HTML
 			edata = {}	// JSON data object that feeds the template
-		 // http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.xml
-			// Load the HTML template
+		 
+		 	// Load the HTML template
 			$.get('eventTmpl.html',function(tmpl2){
 					etmpl = tmpl2;
 				}
 			)											
 
-			// Retrieve the server data and then initialise the page	
+			/*// Retrieve the server data and then initialise the page	
 			$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {id : eid},
 				function(data){
 					console.log(data);
@@ -131,7 +131,34 @@ $( document ).on( "pageinit", "#page2", function() {
 					$("#page3").html( Page );
 					$.mobile.changePage( "#page3", { transition: "slideup" });
 				}
-			)
+			)*/
+
+
+
+	var request = $.ajax({
+	
+		url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
+		type: "GET",
+		async: true,
+		data:  {id : eid},
+		dataType: "json"
+
+	});
+	
+	request.done(function(data){
+		$.extend(edata,data);
+		var Page = Mustache.to_html( etmpl, edata );
+		$("#page3").html( Page );
+		$.mobile.changePage( "#page3", { transition: "slideup" });
+	});
+
+
+	request.fail(function(jqXHR, textStatus) {
+	
+		alert( "Request failed: " + textStatus );
+
+	});
+
 
 	});//On event link clicked
 	
