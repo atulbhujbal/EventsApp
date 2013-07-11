@@ -75,9 +75,10 @@ $( document ).on( "pageinit", "#page2", function() {
 				  dataType: "json",
 		
 		success: function(data){
+					alert("data fetched");
 					console.log(data);
 					tdata=data;
-		    		alert("data fetched");
+		    
 					var renderedPage = Mustache.to_html( tmpl, tdata );
 					$("#eventlist").html( renderedPage );
 
