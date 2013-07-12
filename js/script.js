@@ -71,16 +71,18 @@ $( document ).on( "pageinit", "#page2", function() {
             dataType: 'html'
             });
     										
-alert("data"+tmpl);
+//alert("data"+tmpl);
 	
 	var request = $.ajax({
 	
-				  url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
-				  type: "GET",
-				  async: true,
-				  cache: false,				  
-				  data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
-				  dataType: "jsonp",
+				url: "http://api.eventfinder.com.au/v2/events.json?callback=?",
+				username: "eventsaroundyou",
+				password: "dksvrtzfqmrd",
+    			crossDomain: true,
+				async: true,
+				cache: false,				  
+				data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
+				dataType: "jsonp",
 		
 		success: function(data){
 
