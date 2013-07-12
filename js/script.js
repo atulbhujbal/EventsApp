@@ -66,12 +66,12 @@ $( document ).on( "pageinit", "#page2", function() {
 	alert("sending request");
 	var request = $.ajax({
 	
-				  url: "http://api.eventfinder.com.au/v2/events.json?callback=?",
+				  url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
 				  type: "GET",
 				  async: true,
 				  cache: false,				  
 				  data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
-				  dataType: "json",
+				  dataType: "jsonp",
 		
 		success: function(data){
 
@@ -154,7 +154,7 @@ $( document ).on( "pageinit", "#page2", function() {
 		type: "GET",
 		async: true,
 		data:  {id : eid},
-		dataType: "json"
+		dataType: "jsonp"
 
 	});
 	
