@@ -75,7 +75,8 @@ $( document ).on( "pageinit", "#page2", function() {
 	
 	var request = $.ajax({
 	
-				url: "http://173.254.28.101/~thecame5/mustache/test1/api/eventsapi.php",
+				//url: "http://173.254.28.101/~thecame5/mustache/test1/api/eventsapi.php",
+				url: "http://mytarget.my.phpcloud.com/index.php",
 				crossDomain: true,
 				async: true,
 				cache: false,				  
