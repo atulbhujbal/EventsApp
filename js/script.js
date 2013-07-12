@@ -71,7 +71,7 @@ $( document ).on( "pageinit", "#page2", function() {
             dataType: 'html'
             });
     										
-
+alert("data"+tmpl);
 	
 	var request = $.ajax({
 	
