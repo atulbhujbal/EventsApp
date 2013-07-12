@@ -58,10 +58,11 @@ $( document ).on( "pageinit", "#page2", function() {
 	tdata = {}	// JSON data object that feeds the template
  
 	// Load the HTML template
-	$.get('eventsTmpl.html',function(tmplt){
+	/*$.get('eventsTmpl.html',function(tmplt){
 			tmpl = tmplt;
+			alert("loading tmpl");
 		}
-	)											
+	)*/											
 
 	alert("sending request");
 	var request = $.ajax({
@@ -77,9 +78,10 @@ $( document ).on( "pageinit", "#page2", function() {
 
 					console.log(data);
 					tdata=data;
-		    
-					var renderedPage = Mustache.to_html( tmpl, tdata );
-					$("#eventlist").html( renderedPage );
+		    		alert(tdata);
+		    		
+					//var renderedPage = Mustache.to_html( tmpl, tdata );
+					//$("#eventlist").html( renderedPage );
 
 			}
 	});
