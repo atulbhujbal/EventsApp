@@ -60,11 +60,19 @@ $( document ).on( "pageinit", "#page2", function() {
 	// Load the HTML template
 	/*$.get('eventsTmpl.html',function(tmplt){
 			tmpl = tmplt;
-			alert("loading tmpl");
 		}
-	)*/											
-	/*
-	alert("sending request");
+	)*/	
+	 $.ajax({
+            url: 'tpl/eventsTmpl.tpl',
+            success: function( data ) {
+                tmpl = data;
+            },
+            async: false,
+            dataType: 'html'
+            });
+    										
+
+	
 	var request = $.ajax({
 	
 				  url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
@@ -78,10 +86,9 @@ $( document ).on( "pageinit", "#page2", function() {
 
 					console.log(data);
 					tdata=data;
-		    		alert(tdata);
-
-					//var renderedPage = Mustache.to_html( tmpl, tdata );
-					//$("#eventlist").html( renderedPage );
+		    		
+					var renderedPage = Mustache.to_html( tmpl, tdata );
+					$("#eventlist").html( renderedPage );
 
 			}
 	});
@@ -97,17 +104,17 @@ $( document ).on( "pageinit", "#page2", function() {
 				var renderedPage = Mustache.to_html( tmpl, tdata );
 				$("#eventlist").html( renderedPage );
 	});
-	
+	*/
 
 	request.fail(function(jqXHR, textStatus) {
 	
 		  	alert( "Request failed: " + textStatus );
 
 	});
-	*/
+
 	
 	// Retrieve the server data and then initialise the page	
-	$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {
+	/*$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {
                 rows : 20,
 				fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"
 			 },
@@ -116,12 +123,11 @@ $( document ).on( "pageinit", "#page2", function() {
 			console.log(data);
 			$.extend(tdata,data);
 			//tdata=data;
-			
-			//var renderedPage = Mustache.to_html( tmpl, tdata );
-			//$("#eventlist").html( renderedPage );
+			var renderedPage = Mustache.to_html( tmpl, tdata );
+			$("#eventlist").html( renderedPage );
 			
 		}
-	)
+	)*/
 	
 	$(document).on('click', '.eventlink', function(){
 
@@ -132,10 +138,19 @@ $( document ).on( "pageinit", "#page2", function() {
 			edata = {}	// JSON data object that feeds the template
 		 
 		 	// Load the HTML template
-			$.get('eventTmpl.html',function(tmpl2){
+			/*$.get('eventTmpl.html',function(tmpl2){
 					etmpl = tmpl2;
 				}
-			)											
+			)*/	
+
+			$.ajax({
+            url: 'tpl/eventTmpl.tpl',
+            success: function( data ) {
+                etmpl = data;
+            },
+            async: false,
+            dataType: 'html'
+            });										
 
 			/*// Retrieve the server data and then initialise the page	
 			$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {id : eid},

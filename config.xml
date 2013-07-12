@@ -21,9 +21,9 @@
     
     <gap:splash src="splash.png" />
     
-    <feature name="http://eventsaroundyou:dksvrtzfqmrd@api.phonegap.com/1.0/network"/>
+    <feature name="http://api.phonegap.com/1.0/network"/>
 
-    <access origin="http://api.eventfinder.com.au" />
+    <access origin="http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au" />
     <access origin="*" /> 
 
 </widget>
