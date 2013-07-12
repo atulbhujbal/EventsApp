@@ -84,6 +84,10 @@ $( document ).on( "pageinit", "#page2", function() {
 				data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
 				dataType: "jsonp",
 		
+		error: function(xhr, status, error) {
+  				var err = eval("(" + xhr.responseText + ")");
+  				alert(err.Message);
+		},
 		success: function(data){
 
 					console.log(data);
