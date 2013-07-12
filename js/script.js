@@ -75,19 +75,14 @@ $( document ).on( "pageinit", "#page2", function() {
 	
 	var request = $.ajax({
 	
-				url: "http://api.eventfinder.com.au/v2/events.json?callback=?",
-				username: "eventsaroundyou",
-				password: "dksvrtzfqmrd",
-    			crossDomain: true,
+				url: "http://173.254.28.101/~thecame5/mustache/test1/api/eventsapi.php",
+				crossDomain: true,
 				async: true,
 				cache: false,				  
-				data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
-				dataType: "jsonp",
+				//data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
+				dataType: "json",
 		
-		error: function(xhr, status, error) {
-  				var err = eval("(" + xhr.responseText + ")");
-  				alert(err.Message);
-		},
+		
 		success: function(data){
 
 					console.log(data);
