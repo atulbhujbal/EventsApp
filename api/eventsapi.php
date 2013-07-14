@@ -1,33 +1,44 @@
 <?php
 // Request the response in JSON format using the .json extension
-//$url = 'http://api.eventfinder.com.au/v2/events.json?rows=3';
-//$url = 'http://api.eventfinder.com.au/v2/events.xml?rows=3&fields=event:(url,name)';
-$url = 'http://api.eventfinder.com.au/v2/events.xml?';//$_REQUEST['url'];
-$param = 'rows=20&fields=event:(name,id,address,images),image:(is_primary,transforms)';//$_REQUEST['param'];
-$url = $url.$param;
-$username = "eventsaroundyou";
-$password = "dksvrtzfqmrd";
-$process = curl_init($url);
-curl_setopt($process, CURLOPT_USERPWD, $username . ":" . $password);
-curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
-$return = curl_exec($process);
 
-$xml = simplexml_load_string($return);
-$json = json_encode($xml);
-strip_cdata($json);
-$count = null;
-$json = preg_replace('/\\\\/', '', $json, -1, $count);
-echo $json;
 
-/*
-foreach($xml as $event)
-
-{
-	//echo "NAME :".$event->name."<br/>";
-	$name = $event->name;
+switch ($_REQUEST["action"]) {
+	case 'allevents':
+		$url = 'http://api.eventfinder.com.au/v2/events.xml?';//$_REQUEST['url'];
+		$param="rows=".$_REQUEST['rows']."&fields=".$_REQUEST['fields'];	
+		reqEvents($url,$param);
+		break;
 	
-	echo $name;
-}*/
+	case 'eventDetails':
+		$url = 'http://api.eventfinder.com.au/v2/events.xml?';//$_REQUEST['url'];
+		$param="id=".$_REQUEST['id'];	
+		reqEvents($url,$param);
+		break;
+
+	default:
+		# code...
+		break;
+}
+
+function reqEvents($url,$param)
+{
+	//$url = 'http://api.eventfinder.com.au/v2/events.xml?';//$_REQUEST['url'];
+	//$param = 'rows=20&fields=event:(name,id,address,images),image:(is_primary,transforms)';//$_REQUEST['param'];
+	$url = $url.$param;
+	$username = "eventsaroundyou";
+	$password = "dksvrtzfqmrd";
+	$process = curl_init($url);
+	curl_setopt($process, CURLOPT_USERPWD, $username . ":" . $password);
+	curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
+	$return = curl_exec($process);
+
+	$xml = simplexml_load_string($return,'SimpleXMLElement', LIBXML_NOCDATA);
+	$json = json_encode($xml);
+	strip_cdata($json);
+	$count = null;
+	$json = preg_replace('/\\\\/', '', $json, -1, $count);
+	echo $json;
+}
 
 function strip_cdata($string) 
 { 

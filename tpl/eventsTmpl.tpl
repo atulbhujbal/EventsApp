@@ -1,6 +1,6 @@
-<ul data-role="listview" data-theme="d" data-inset="false" id="list_locations" style="padding: 0;margin: 0;">
+<ul data-role="listview" data-theme="a" data-inset="false" id="list_locations" style="padding: 0;margin: 0;">
 {{#event}}	
-<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="d" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-btn-hover-d ui-btn-up-d">
+<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="a" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-li-has-thumb ui-btn-hover-a ui-btn-up-a">
 
 	<div class="ui-btn-inner ui-li">
 		

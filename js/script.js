@@ -44,24 +44,18 @@ var newfunction = function(id){
 	alert("hello "+id);
 	
 }*/
-$( document ).on( "pageinit", "#page1", function() {
-//alert("Loading Page");
+/*$( document ).on( "pageinit", "#page1", function() {
+	//alert("Loading Page");
 	//$.mobile.changePage( "#page2", { transition: "fade" });
 	
-});
+});*/
 
 $( document ).on( "pageinit", "#page2", function() {
 	
-	//alert("loading tmpl");
 	
 	var tmpl, 	// Main template HTML
 	tdata = {}	// JSON data object that feeds the template
  
-	// Load the HTML template
-	/*$.get('eventsTmpl.html',function(tmplt){
-			tmpl = tmplt;
-		}
-	)*/	
 	 $.ajax({
             url: 'tpl/eventsTmpl.tpl',
             success: function( data ) {
@@ -71,12 +65,13 @@ $( document ).on( "pageinit", "#page2", function() {
             dataType: 'html'
             });
     										
-//alert("data"+tmpl);
+
 	
 	var request = $.ajax({
 	
-				//url: "http://173.254.28.101/~thecame5/mustache/test1/api/eventsapi.php",
-				url: "http://mytarget.my.phpcloud.com/index.php",
+				url: "http://173.254.28.101/~thecame5/mustache/test1/api/eventsapi.php",
+				//url: "http://mytarget.my.phpcloud.com/index.php",
+				data: { action:"allevents", rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
 				crossDomain: true,
 				async: true,
 				cache: false,				  
@@ -139,22 +134,42 @@ $( document ).on( "pageinit", "#page2", function() {
 			var etmpl, 	// Main template HTML
 			edata = {}	// JSON data object that feeds the template
 		 
-		 	// Load the HTML template
-			/*$.get('eventTmpl.html',function(tmpl2){
-					etmpl = tmpl2;
-				}
-			)*/	
-
-			$.ajax({
-            url: 'tpl/eventTmpl.tpl',
-            success: function( data ) {
-                etmpl = data;
-            },
-            async: false,
-            dataType: 'html'
+		 	$.ajax({
+	            url: 'tpl/eventTmpl.tpl',
+	            success: function( data ) {
+	                etmpl = data;
+	            },
+	            async: false,
+	            dataType: 'html'
             });										
 
-			/*// Retrieve the server data and then initialise the page	
+	var request = $.ajax({
+	
+				url: "http://173.254.28.101/~thecame5/mustache/test1/api/eventsapi.php",
+				//url: "http://mytarget.my.phpcloud.com/index.php",
+				data: { action:"eventDetails", id : eid},
+				crossDomain: true,
+				async: true,
+				cache: false,				  
+				//data: {rows : 20,	fields : "event:(name,id,address,images),images:(transforms),transforms:(url)"},
+				dataType: "json",
+		
+		
+		success: function(data){
+
+					console.log(data);
+					var edata  = data;		
+					var eventPage = Mustache.to_html( etmpl, edata );
+					$("#eventDetails").html( eventPage );
+					$.mobile.changePage( "#page3", { transition: "fade" });
+					            			
+			}
+	});
+
+			/*
+			//Using getJSON Funtion
+
+			// Retrieve the server data and then initialise the page	
 			$.getJSON("http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?", {id : eid},
 				function(data){
 					console.log(data);
@@ -166,24 +181,6 @@ $( document ).on( "pageinit", "#page2", function() {
 				}
 			)*/
 
-
-
-	var request = $.ajax({
-	
-		url: "http://eventsaroundyou:dksvrtzfqmrd@api.eventfinder.com.au/v2/events.json?callback=?",
-		type: "GET",
-		async: true,
-		data:  {id : eid},
-		dataType: "jsonp"
-
-	});
-	
-	request.done(function(data){
-		$.extend(edata,data);
-		var Page = Mustache.to_html( etmpl, edata );
-		$("#page3").html( Page );
-		$.mobile.changePage( "#page3", { transition: "slideup" });
-	});
 
 
 	request.fail(function(jqXHR, textStatus) {
